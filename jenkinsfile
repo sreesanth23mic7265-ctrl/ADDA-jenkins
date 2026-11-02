@@ -19,7 +19,7 @@ pipeline {
         stage('deploy'){
             steps{
                 bat '''
-                    start "SpringApp" /B java -jar target\\*.jar
+                    start "SpringApp" /B java -jar target\\demo-0.0.1-SNAPSHOT.jar --server.port=8081
                 '''
             }
         }
