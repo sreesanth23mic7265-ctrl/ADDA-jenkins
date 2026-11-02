@@ -1,0 +1,27 @@
+pipleline {
+    agent any
+    stages{
+        stage('compose'){
+            steps{
+                git branch: 'main', url: 'https://github.com/sreesanth23mic7265-ctrl/ADDA-jenkins.git'
+            }
+        }
+        stage('build'){
+            steps{
+                bat 'mvn.cmd clean build -DskipTests'
+            }
+        }
+        stage('test'){
+            steps{
+                bat 'mvn.cmd test'
+            }
+        }
+        stage('deploy'){
+            steps{
+                bat '''
+                    start "SpringApp" /B java -jar target\\*.jar
+                '''
+            }
+        }
+    }
+}
